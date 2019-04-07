@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.CallLog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.view.Menu;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int PHONE_LOG = 1;
     Button chatButton;
     Button historyButton;
+
+
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
 
 
 
@@ -45,54 +55,106 @@ public class MainActivity extends AppCompatActivity {
             editTextCarrierNumber.getText().clear();
     }
 
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+
     //History click
     public void HistoryClick(View view){
+        //permission
 
-        // making buttons invisable
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.READ_CALL_LOG)
+                    == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_CALL_LOG)
+                    == PackageManager.PERMISSION_GRANTED) {
 
-        chatButton.setVisibility(View.INVISIBLE);
-        historyButton.setVisibility(View.INVISIBLE);
+                // making buttons invisable
 
-
-        //variables
-        listView.setVisibility(View.VISIBLE);
-        String phNumber = null;
-        int number;
-        int i = 0 ;
-
-        // get number from call log
-        Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null,
-                null, null, null);
-        number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
-        final ArrayList<String> NumbersArray = new ArrayList<>();
-        while(managedCursor.moveToNext()&& i<20){
-            phNumber = managedCursor.getString(number);
-            NumbersArray.add(phNumber);
-            i++;
-        }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,NumbersArray);
-        listView.setAdapter(arrayAdapter);
+                chatButton.setVisibility(View.INVISIBLE);
+                historyButton.setVisibility(View.INVISIBLE);
 
 
-        //List click
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editTextCarrierNumber.setText(NumbersArray.get(position));
-                listView.setVisibility(View.INVISIBLE);
+                //variables
+                final ArrayList<String> NumbersArray = new ArrayList<>();
+                listView.setVisibility(View.VISIBLE);
+                String phNumber = null;
+                int number;
+                int i = 0 ;
 
-                // buttons back to Visible
-                chatButton.setVisibility(View.VISIBLE);
-                historyButton.setVisibility(View.VISIBLE);
+                // get number from call log
+                Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null,
+                        null, null,null);
+                //managedCursor.moveToFirst();
+                number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
+
+                //writing numbers from the log into the array
+                    while (managedCursor.moveToNext()) {
+                        phNumber = managedCursor.getString(number);
+                        NumbersArray.add(phNumber);
+                        i++;
+                    }
+
+
+                //because numbers are from first to last
+                Collections.reverse(NumbersArray);
+
+                    //to reduce the number of items in the array
+                if(NumbersArray.size()>10)
+                    for(i = NumbersArray.size()-1 ; i>=10 ;i--)
+                        NumbersArray.remove(i);
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,NumbersArray);
+                listView.setAdapter(arrayAdapter);
+
+
+                //List click
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        editTextCarrierNumber.setText(NumbersArray.get(position));
+                        listView.setVisibility(View.INVISIBLE);
+                        NumbersArray.clear();
+
+                        // buttons back to Visible
+                        chatButton.setVisibility(View.VISIBLE);
+                        historyButton.setVisibility(View.VISIBLE);
+
+                    }
+                })  ;
             }
-        })  ;
+            else {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG}, 1);
+                Toast.makeText(this,"Please allow the permission so you can access the call history",Toast.LENGTH_LONG).show();
+            }
+        }
+
+
+
+
     }
+
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        checkCallLogPermission();
+        //checkCallLogPermission();
         listView = (ListView)findViewById(R.id.listView);
         chatButton = findViewById(R.id.chatButton);
         historyButton = findViewById(R.id.historyButton);
@@ -117,20 +179,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    //Permission
-    private void checkCallLogPermission() {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG},PHONE_LOG);
-
-            return;
-
-
-        }
-    }
-
-
 }
+
