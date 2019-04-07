@@ -24,6 +24,7 @@ import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                     == PackageManager.PERMISSION_GRANTED) {
 
                 // making buttons invisable
-
                 chatButton.setVisibility(View.INVISIBLE);
                 historyButton.setVisibility(View.INVISIBLE);
 
@@ -89,31 +89,40 @@ public class MainActivity extends AppCompatActivity {
                 listView.setVisibility(View.VISIBLE);
                 String phNumber = null;
                 int number;
-                int i = 0 ;
 
-                // get number from call log
-                Cursor managedCursor = managedQuery(CallLog.Calls.CONTENT_URI, null,
-                        null, null,null);
-                //managedCursor.moveToFirst();
+
+                // get number from call log + add the last call number
+                Cursor managedCursor = getContentResolver().query(CallLog.Calls.CONTENT_URI, null,
+                        null, null,CallLog.Calls.DATE + " ASC");
+
+                managedCursor.moveToLast();
+
                 number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
 
-                //writing numbers from the log into the array
-                    while (managedCursor.moveToNext()) {
+                NumbersArray.add(managedCursor.getString(number));
+
+
+
+                //writing numbers from the log into the arraylist
+                    while (managedCursor.moveToPrevious()) {
+
                         phNumber = managedCursor.getString(number);
+
                         NumbersArray.add(phNumber);
-                        i++;
+
                     }
 
 
-                //because numbers are from first to last
-                Collections.reverse(NumbersArray);
 
-                    //to reduce the number of items in the array
+                //to reduce the number of items in the array
                 if(NumbersArray.size()>10)
-                    for(i = NumbersArray.size()-1 ; i>=10 ;i--)
+                    for(int i = NumbersArray.size()-1 ; i > 9 ; i--)
                         NumbersArray.remove(i);
 
+
+
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,NumbersArray);
+
                 listView.setAdapter(arrayAdapter);
 
 
@@ -121,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                         editTextCarrierNumber.setText(NumbersArray.get(position));
                         listView.setVisibility(View.INVISIBLE);
                         NumbersArray.clear();
@@ -133,8 +143,11 @@ public class MainActivity extends AppCompatActivity {
                 })  ;
             }
             else {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG}, 1);
+
                 Toast.makeText(this,"Please allow the permission so you can access the call history",Toast.LENGTH_LONG).show();
+
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG}, 1);
+
             }
         }
 
@@ -154,12 +167,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //checkCallLogPermission();
+
         listView = (ListView)findViewById(R.id.listView);
         chatButton = findViewById(R.id.chatButton);
         historyButton = findViewById(R.id.historyButton);
         editTextCarrierNumber =  findViewById(R.id.editText_carrierNumber);
+
         Toast.makeText(this,"Made with love from Riyadh, Saudi Arabia",Toast.LENGTH_LONG).show();
+
     }
 
     @Override
