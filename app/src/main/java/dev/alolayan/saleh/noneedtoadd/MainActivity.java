@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Menu;
 
@@ -32,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
     CountryCodePicker ccp;
     EditText editTextCarrierNumber;
     ListView listView;
-    private static final int PHONE_LOG = 1;
+    TextView linkTextView;
     Button chatButton;
     Button historyButton;
     Button cancelButton;
+    Button linkButton;
 
 
     /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 // making buttons invisible/visible
                 chatButton.setVisibility(View.INVISIBLE);
                 historyButton.setVisibility(View.INVISIBLE);
+                linkButton.setVisibility(View.INVISIBLE);
+                linkTextView.setVisibility(View.INVISIBLE);
                 cancelButton.setVisibility(View.VISIBLE);
 
 
@@ -137,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
                         // buttons back to Visible/invisible
                         chatButton.setVisibility(View.VISIBLE);
                         historyButton.setVisibility(View.VISIBLE);
+                        linkButton.setVisibility(View.VISIBLE);
+                        linkTextView.setVisibility(View.VISIBLE);
                         cancelButton.setVisibility(View.INVISIBLE);
 
                     }
@@ -163,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
         chatButton.setVisibility(View.VISIBLE);
         historyButton.setVisibility(View.VISIBLE);
+        linkButton.setVisibility(View.VISIBLE);
+        linkTextView.setVisibility(View.VISIBLE);
         listView.setVisibility(View.INVISIBLE);
         cancelButton.setVisibility(View.INVISIBLE);
 
@@ -176,15 +184,33 @@ public class MainActivity extends AppCompatActivity {
      * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
      * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
+    public void LinksClick(View view){
+
+        Intent web=new Intent(Intent.ACTION_VIEW, Uri.parse("https://il.ink/salehalolayan"));
+        startActivity(web);
+
+    }
+
+    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Finding Views
         listView = findViewById(R.id.listView);
+        linkTextView = findViewById(R.id.linkTextView);
         chatButton = findViewById(R.id.chatButton);
         historyButton = findViewById(R.id.historyButton);
         cancelButton = findViewById(R.id.cancelButton);
+        linkButton = findViewById(R.id.linkButton);
         editTextCarrierNumber =  findViewById(R.id.editText_carrierNumber);
 
         Toast.makeText(this,"Made with love from Riyadh, Saudi Arabia",Toast.LENGTH_LONG).show();
