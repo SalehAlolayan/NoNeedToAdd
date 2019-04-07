@@ -8,7 +8,7 @@ import android.view.View;
 
 public class AboutActivity extends AppCompatActivity {
 
-    public void clickD(View view){
+    public void clickEmail(View view){
         Intent web=new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:saleh.alolayan.dev@hotmail.com"));
         startActivity(web);
     }
