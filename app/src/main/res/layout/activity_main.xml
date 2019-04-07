@@ -132,14 +132,14 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="294dp"
+        android:layout_height="240dp"
         android:layout_below="@+id/ccp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="54dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp"
@@ -155,7 +155,7 @@
         android:layout_alignEnd="@+id/textView"
         android:layout_marginTop="-1dp"
         android:layout_marginEnd="26dp"
-        android:onClick="click"
+        android:onClick="WhatsAppClick"
         android:text="Let's Chat" />
 
     <Button
@@ -172,6 +172,23 @@
         android:layout_toLeftOf="@+id/chatButton"
         android:onClick="HistoryClick"
         android:text="Call History" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ccp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:onClick="CancelClick"
+        android:text="Cancel"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

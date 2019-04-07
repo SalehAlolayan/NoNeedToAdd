@@ -6,8 +6,8 @@ android {
         applicationId "dev.alolayan.saleh.noneedtoadd"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 9
-        versionName "1.2.3"
+        versionCode 10
+        versionName "1.2.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

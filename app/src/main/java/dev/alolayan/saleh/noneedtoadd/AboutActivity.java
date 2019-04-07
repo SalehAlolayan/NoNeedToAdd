@@ -8,7 +8,7 @@ import android.view.View;
 
 public class AboutActivity extends AppCompatActivity {
 
-    public void clickD(View view){
+    public void emailClick(View view){
         Intent web=new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:saleh.alolayan.dev@hotmail.com"));
         startActivity(web);
     }
@@ -16,6 +16,6 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new);
+        setContentView(R.layout.activity_about);
     }
 }
