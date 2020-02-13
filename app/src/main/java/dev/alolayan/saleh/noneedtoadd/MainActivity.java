@@ -1,5 +1,20 @@
 package dev.alolayan.saleh.noneedtoadd;
 
+/*
+ * Developer name: Saleh Alolayan
+ * Email: Saleh.Alolayan.dev@hotmail.com
+ *
+ * Disclaimer: I shall not be held responsible,
+ * if any of my code, apps, scripts, ETC…, caused you or any one a thermonuclear war,
+ * world war, zombie attack or even you getting fired because the alarm failed you.
+ * You will always us it on your own responsible/risk.
+ *
+ * Note: The code is open sourced,
+ * for that you are allowed to use it in any but you shouldn't add ads or
+ * ask for money, it was free and it will always will be :)
+ *
+ * I SAW YOU SEE ME SAW YOU
+ * */
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
