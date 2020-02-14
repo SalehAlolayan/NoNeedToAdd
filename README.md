@@ -28,6 +28,7 @@ https://labs.xda-developers.com/store/app/dev.alolayan.saleh.noneedtoadd
 
 https://play.google.com/store/apps/details?id=dev.alolayan.saleh.noneedtoadd
 
+
 - Aptoide:
 
 https://no-need-to-add.en.aptoide.com/?store_name=salehalolayan
@@ -42,3 +43,7 @@ The code and the app was developed for free and it will always be.
 **Contribution**
 
 Contributions are always welcomed, and I'll be happy to add any Contribution
+
+**Disclaimer**
+
+I shall not be held responsible, if any of my code, apps, scripts, ETC?, caused you or any one a thermonuclear war, world war, zombie apocalypse or even you getting fired because the alarm failed you. You will always us it on your own responsible/risk.
