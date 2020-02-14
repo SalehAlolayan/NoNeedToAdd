@@ -20,13 +20,14 @@ Its a branch that started after google restricting the accses to call logs, for 
 
 **Store Links**
 
+- XDA Labs (Full features) {Recommended}:
+
+https://labs.xda-developers.com/store/app/dev.alolayan.saleh.noneedtoadd
+
 - Google playstore:
 
 https://play.google.com/store/apps/details?id=dev.alolayan.saleh.noneedtoadd
 
-- XDA Labs:
-
-https://labs.xda-developers.com/store/app/dev.alolayan.saleh.noneedtoadd
 
 - Aptoide:
 
