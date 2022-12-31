@@ -7,41 +7,6 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView12"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/chatButton"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:text="Check out my other Apps with better futures"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/linkButton"
-        android:layout_width="216dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView12"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:onClick="links"
-        android:text="My other Apps" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

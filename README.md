@@ -12,22 +12,21 @@ This app let you chat with anyone on WhatsApp without the need to add them in yo
 **Branches**
 - Master:
 
-it has all the functionality of the application
+it has all the functionality of the application "Recommended to download the app directly from Github because of the below issues with Google privacy issue"
 
 - Google-New-Policy:
 
-Its a branch that started after google restricting the accses to call logs, for that I had to remove the call history feature, this branch will be there for google's crazy polices and the main development will be in the master branch. 
+Its a branch that started after google restricting the access to call logs, for that I had to remove the call history feature, this branch will be there for google's crazy polices and the main development will be in the master branch. 
 
 **Store Links**
 
-- XDA Labs (Full features) {Recommended}:
+- Direct from GitHub (Recommended):
 
-https://labs.xda-developers.com/store/app/dev.alolayan.saleh.noneedtoadd
+https://github.com/SalehAlolayan/NoNeedToAdd/releases/download/Full-Features/NoNeedToAdd-Full-Features-v1-2-6.apk
 
 - Google playstore:
 
 https://play.google.com/store/apps/details?id=dev.alolayan.saleh.noneedtoadd
-
 
 - Aptoide:
 
@@ -35,10 +34,6 @@ https://no-need-to-add.en.aptoide.com/?store_name=salehalolayan
 
 - Huawei store:
 
-**License**
-
-You are not allowed to take any part of the code and use it for Commerical use, you can use the app or the code in nonCommerical way only.
-The code and the app was developed for free and it will always be.
 
 **Contribution**
 
