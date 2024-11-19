@@ -23,8 +23,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CallLog;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,15 +52,6 @@ public class MainActivity extends AppCompatActivity {
     Button cancelButton;
     Button linkButton;
 
-
-    // Normal edition
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-
-
     //WhatsApp click
     public void WhatsAppClick(View view){
             ccp = findViewById(R.id.ccp);
@@ -70,13 +61,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(web);
             editTextCarrierNumber.getText().clear();
     }
-
-
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
 
     //History click
@@ -90,10 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 // making buttons invisible/visible
                 chatButton.setVisibility(View.INVISIBLE);
                 historyButton.setVisibility(View.INVISIBLE);
-                linkButton.setVisibility(View.INVISIBLE);
-                linkTextView.setVisibility(View.INVISIBLE);
                 cancelButton.setVisibility(View.VISIBLE);
-
 
                 //variables
                 final ArrayList<String> NumbersArray = new ArrayList<>();
@@ -101,41 +82,26 @@ public class MainActivity extends AppCompatActivity {
                 String phNumber = null;
                 int number;
 
-
                 // get number from call log + add the last call number
                 Cursor managedCursor = getContentResolver().query(CallLog.Calls.CONTENT_URI, null,
                         null, null,CallLog.Calls.DATE + " ASC");
-
                 managedCursor.moveToLast();
-
                 number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
-
                 NumbersArray.add(managedCursor.getString(number));
-
-
 
                 //writing numbers from the log into the arraylist
                     while (managedCursor.moveToPrevious()) {
-
                         phNumber = managedCursor.getString(number);
-
                         NumbersArray.add(phNumber);
-
                     }
-
-
 
                 //to reduce the number of items in the array
                 if(NumbersArray.size()>10)
                     for(int i = NumbersArray.size()-1 ; i > 9 ; i--)
                         NumbersArray.remove(i);
 
-
-
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,NumbersArray);
-
                 listView.setAdapter(arrayAdapter);
-
 
                 //ListChat click
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -149,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
                         // buttons back to Visible/invisible
                         chatButton.setVisibility(View.VISIBLE);
                         historyButton.setVisibility(View.VISIBLE);
-                        linkButton.setVisibility(View.VISIBLE);
-                        linkTextView.setVisibility(View.VISIBLE);
                         cancelButton.setVisibility(View.INVISIBLE);
 
                     }
@@ -159,47 +123,18 @@ public class MainActivity extends AppCompatActivity {
             else {
 
                 Toast.makeText(this,"Please allow the permission so you can access the call history",Toast.LENGTH_LONG).show();
-
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.READ_CALL_LOG}, 1);
 
             }
         }
     }
 
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-
-
     public void CancelClick(View view){
-
         chatButton.setVisibility(View.VISIBLE);
         historyButton.setVisibility(View.VISIBLE);
-        linkButton.setVisibility(View.VISIBLE);
-        linkTextView.setVisibility(View.VISIBLE);
         listView.setVisibility(View.INVISIBLE);
         cancelButton.setVisibility(View.INVISIBLE);
-
-
     }
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
-
-     public void LinksClick(View view){
-
-        Intent web=new Intent(Intent.ACTION_VIEW, Uri.parse("https://il.ink/salehalolayan"));
-        startActivity(web);
-
-    }
-
-    /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-     * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,11 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Finding Views
         listView = findViewById(R.id.listView);
-        linkTextView = findViewById(R.id.linkTextView);
         chatButton = findViewById(R.id.chatButton);
         historyButton = findViewById(R.id.historyButton);
         cancelButton = findViewById(R.id.cancelButton);
-        linkButton = findViewById(R.id.linkButton);
         editTextCarrierNumber =  findViewById(R.id.editText_carrierNumber);
 
         Toast.makeText(this,"Made with love from Riyadh, Saudi Arabia",Toast.LENGTH_LONG).show();

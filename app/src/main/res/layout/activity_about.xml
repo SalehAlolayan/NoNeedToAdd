@@ -93,4 +93,21 @@
         android:onClick="emailClick"
         android:text="Email Me" />
 
+    <Button
+        android:id="@+id/githubButton"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="112dp"
+        android:onClick="githubClick"
+        android:text="My GitHub" />
+
 </RelativeLayout>
