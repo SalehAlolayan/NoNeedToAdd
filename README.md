@@ -22,7 +22,7 @@ Its a branch that started after google restricting the accses to call logs, for 
 
 - Direct from GitHub (Recommended):
 
-https://github.com/SalehAlolayan/NoNeedToAdd/releases/download/Full-Features/NoNeedToAdd-Full-Features-v1-2-6.apk
+https://github.com/SalehAlolayan/NoNeedToAdd/releases/download/v1.2.7/NoNeedToAdd_1.2.7.apk
 
 - Google playstore:
 
